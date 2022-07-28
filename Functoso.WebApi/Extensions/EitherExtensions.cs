@@ -20,7 +20,7 @@ public static class EitherExtensions
 
     public static async Task<IActionResult> ToActionResult<R>(this Task<Either<Error, R>> @this, string path)
     {
-        var either = await @this;
+        Either<Error, R> either = await @this;
         return either.ToActionResult(path);
     }
 }

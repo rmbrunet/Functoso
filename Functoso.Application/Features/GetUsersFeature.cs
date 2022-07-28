@@ -17,9 +17,9 @@ public class GetUsersFeature
 
         public async Task<Either<Error, IEnumerable<UserDto>>> Handle(Query _, CancellationToken cancellationToken)
         {
-            var t = await (from u in _userService.GetUsers()
-                           from d in MappUsers(u, _mapper)
-                           select d).Run();
+            Fin<IEnumerable<UserDto>> t = await (from u in _userService.GetUsers()
+                                                 from d in MappUsers(u, _mapper)
+                                                 select d).Run();
 
             return t.ToEither();
         }
