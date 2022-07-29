@@ -61,7 +61,7 @@ public class GetUserFeature
 
         private static Eff<User> AddUserToCache(Query request, IMemoryCache cache, User user)
         {
-            cache.Set($"users/{request.Id}", user);
+            cache.Set($"users/{request.Id}", user, TimeSpan.FromSeconds(60));
             return Eff<User>(() => user);
         }
     }
