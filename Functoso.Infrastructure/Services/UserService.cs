@@ -1,7 +1,11 @@
 ﻿using System.Net.Http.Json;
+using Functoso.Infrastructure.Common;
 
 namespace Functoso.Infrastructure;
 
+/// <summary>
+/// User Service implementation.
+/// </summary>
 public class UserService : IUserService
 {
     private readonly HttpClient _client;
@@ -11,9 +15,18 @@ public class UserService : IUserService
         _client = client;
     }
 
+    /// <summary>
+    /// GetUsers Method
+    /// </summary>
+    /// <returns>Collection of User objects</returns>
     public Aff<IEnumerable<User>> GetUsers()
         => Get<IEnumerable<User>>(_client, "users");
 
+    /// <summary>
+    /// GetUser Method
+    /// </summary>
+    /// <param name="id">User identifier</param>
+    /// <returns>The usewr corresponding to the id or an Expected 404 Error</returns>
     public Aff<User> GetUser(int id)
         => Get<User>(_client, $"users/{id}");
 
@@ -31,10 +44,9 @@ public class UserService : IUserService
 
     private static Aff<HttpResponseMessage> GetHttpResponse(HttpClient client, string url)
         => AffMaybe<HttpResponseMessage>(async () =>
-        {
-            HttpResponseMessage? response = await client.GetAsync(url);
-            return response.IsSuccessStatusCode
-                ? response
-                : Error.New((int)response.StatusCode, response.ReasonPhrase);
-        });
+            await client.GetAsync(url) switch
+            {
+                { IsSuccessStatusCode: true } m => m,
+                var m => new HttpError(m)
+            });
 }
