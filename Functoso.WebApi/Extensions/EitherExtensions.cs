@@ -12,13 +12,13 @@ public static class EitherExtensions
           Right: r => new OkObjectResult(r),
           Left: l => l switch
           {
-              { Code: 404 } => new NotFoundObjectResult($"Resource \"{path}\" not found."),
-              { Code: 400 } => new BadRequestObjectResult(l.Message),
-              _ => new ObjectResult(l.Message) { StatusCode = 500 }
+              { Code: StatusCodes.Status404NotFound } => new NotFoundObjectResult($"Resource '{path}' not found."),
+              { Code: StatusCodes.Status400BadRequest } => new BadRequestObjectResult(l.Message),
+              _ => new ObjectResult(l.Message) { StatusCode = StatusCodes.Status500InternalServerError }
           });
     }
 
-    public static async Task<IActionResult> ToActionResult<R>(this Task<Either<Error, R>> @this, string path)
+    public static async Task<IActionResult> ToActionResultAsync<R>(this Task<Either<Error, R>> @this, string path)
     {
         Either<Error, R> either = await @this;
         return either.ToActionResult(path);

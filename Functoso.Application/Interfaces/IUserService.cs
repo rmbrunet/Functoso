@@ -4,5 +4,5 @@ public interface IUserService
 {
     Aff<User> GetUser(int id);
 
-    Aff<IEnumerable<User>> GetUsers();
+    Aff<IEnumerable<User>> Users { get; }
 }

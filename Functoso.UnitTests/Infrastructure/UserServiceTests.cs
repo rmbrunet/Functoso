@@ -1,7 +1,5 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+﻿using Functoso.UnitTests.Common;
 using System.Net;
-using RichardSzalay.MockHttp;
 
 namespace Functoso.UnitTests.Infrastructure;
 
@@ -11,11 +9,12 @@ public class UserServiceTests
     public async Task Service_ReturnErro404_WhenUserNotFound()
     {
         // Arrange
-        var handler = new MockHttpMessageHandler();
+        var handler = new MockingHandler(() => Task.FromResult(new HttpResponseMessage(HttpStatusCode.NotFound)));
 
-        handler.Expect("/users/1").Respond(HttpStatusCode.NotFound);
-        var client = handler.ToHttpClient();
-        client.BaseAddress = new Uri("https://localhost");
+        HttpClient client = new(handler)
+        {
+            BaseAddress = new Uri("https://fakeurl")
+        };
 
         IUserService sut = new UserService(client);
 

@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using Functoso.Application.Errors;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Functoso.Application.Features;
@@ -12,7 +13,7 @@ public class GetUserFeature
     {
         public QueryValidator()
         {
-            RuleFor(x => x.Id).GreaterThan(0).WithMessage("User Id must be greater than zero.");
+            RuleFor(x => x.Id).GreaterThan(0);
         }
     }
 
@@ -47,11 +48,15 @@ public class GetUserFeature
         private static Eff<LanguageExt.Unit> ValidateQuery(Query request, IValidator<Query> validator)
         {
             ValidationResult result = validator.Validate(request);
-            return result.IsValid ? unitEff : FailEff<LanguageExt.Unit>(Error.New(400, result.ToString()));
+            return result.IsValid ? unitEff : FailEff<LanguageExt.Unit>(new ValidationError(result));
         }
+
+#pragma warning disable S3242
 
         private static Eff<UserDto> MappUser(User user, IMapper mapper)
             => Eff(() => mapper.Map<UserDto>(user));
+
+#pragma warning restore S3242
 
         private static Aff<User> GetUserFromCache(Query request, IMemoryCache cache)
         {

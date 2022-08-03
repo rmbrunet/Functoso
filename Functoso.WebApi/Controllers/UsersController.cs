@@ -22,7 +22,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public Task<IActionResult> Get()
-         => _mediator.Send(new GetUsersFeature.Query()).ToActionResult(HttpContext.Request.Path);
+         => _mediator.Send(new GetUsersFeature.Query()).ToActionResultAsync(HttpContext.Request.Path);
 
     /// <summary>
     /// Returns a User by Id
@@ -35,5 +35,5 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public Task<IActionResult> Get(int id)
-        => _mediator.Send(new GetUserFeature.Query(id)).ToActionResult(HttpContext.Request.Path);
+        => _mediator.Send(new GetUserFeature.Query(id)).ToActionResultAsync(HttpContext.Request.Path);
 }
