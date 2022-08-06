@@ -1,12 +1,15 @@
-﻿using Functoso.UnitTests.Common;
-using System.Net;
+﻿using System.Net;
+using Functoso.UnitTests.Common;
 
 namespace Functoso.UnitTests.Infrastructure;
 
 public class UserServiceTests
 {
+    /// <summary>
+    /// When the user is not found UserService should return ExpectedError with Code 404.
+    /// </summary>
     [Fact]
-    public async Task Service_ReturnErro404_WhenUserNotFound()
+    public async Task Service_ReturnExpectedError404_WhenUserNotFound()
     {
         // Arrange
         var handler = new MockingHandler(() => Task.FromResult(new HttpResponseMessage(HttpStatusCode.NotFound)));
@@ -23,8 +26,8 @@ public class UserServiceTests
 
         //Assert
         Assert.True(fin.Match<bool>(
-            u => false,
-            e =>
+            Succ: u => false,
+            Fail: e =>
             {
                 return e.Code == 404;
             }));
