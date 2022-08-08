@@ -12,7 +12,7 @@ public class UserServiceTests
     public async Task Service_ReturnExpectedError404_WhenUserNotFound()
     {
         // Arrange
-        var handler = new MockingHandler(() => Task.FromResult(new HttpResponseMessage(HttpStatusCode.NotFound)));
+        using var handler = new MockingHandler(() => Task.FromResult(new HttpResponseMessage(HttpStatusCode.NotFound)));
 
         HttpClient client = new(handler)
         {
