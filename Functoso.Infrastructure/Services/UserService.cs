@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Json;
-using Functoso.Application.Errors;
+using Functoso.Infrastructure.Errors;
 
 namespace Functoso.Infrastructure;
 

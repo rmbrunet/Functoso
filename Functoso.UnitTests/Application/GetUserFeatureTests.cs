@@ -2,6 +2,7 @@
 using Functoso.Application.Dtos;
 using Functoso.Application.Features;
 using Microsoft.Extensions.Caching.Memory;
+using Moq;
 
 namespace Functoso.UnitTests.Application;
 

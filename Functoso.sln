@@ -3,20 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functoso.WebApi", "Functoso.WebApi\Functoso.WebApi.csproj", "{6ED46B41-4451-43EF-B614-2FF4BBD9A076}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functoso.WebApi", "Functoso.WebApi\Functoso.WebApi.csproj", "{6ED46B41-4451-43EF-B614-2FF4BBD9A076}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functoso.Domain", "Functoso.Domain\Functoso.Domain.csproj", "{E6FC24CD-6E51-4CB4-B7E1-0DE9D3CC3188}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functoso.Domain", "Functoso.Domain\Functoso.Domain.csproj", "{E6FC24CD-6E51-4CB4-B7E1-0DE9D3CC3188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functoso.Application", "Functoso.Application\Functoso.Application.csproj", "{D0FAC658-A72D-40E1-B24E-BFAE23D287AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functoso.Application", "Functoso.Application\Functoso.Application.csproj", "{D0FAC658-A72D-40E1-B24E-BFAE23D287AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functoso.Infrastructure", "Functoso.Infrastructure\Functoso.Infrastructure.csproj", "{F1BDA501-9CE7-4611-B995-A7B0E28DFB04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functoso.Infrastructure", "Functoso.Infrastructure\Functoso.Infrastructure.csproj", "{F1BDA501-9CE7-4611-B995-A7B0E28DFB04}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5AC90619-A386-4E99-9A8C-95399390B567}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functoso.UnitTests", "Functoso.UnitTests\Functoso.UnitTests.csproj", "{CA68134D-DC4E-4307-AD16-DCC1CE0ECBD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functoso.UnitTests", "Functoso.UnitTests\Functoso.UnitTests.csproj", "{CA68134D-DC4E-4307-AD16-DCC1CE0ECBD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functoso.Contracts", "Functoso.Contracts\Functoso.Contracts.csproj", "{42BE668B-BDEA-42CF-BD8E-279F783CB84A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{CA68134D-DC4E-4307-AD16-DCC1CE0ECBD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA68134D-DC4E-4307-AD16-DCC1CE0ECBD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA68134D-DC4E-4307-AD16-DCC1CE0ECBD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42BE668B-BDEA-42CF-BD8E-279F783CB84A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42BE668B-BDEA-42CF-BD8E-279F783CB84A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42BE668B-BDEA-42CF-BD8E-279F783CB84A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42BE668B-BDEA-42CF-BD8E-279F783CB84A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

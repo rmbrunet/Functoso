@@ -1,4 +1,4 @@
-﻿namespace Functoso.Application.Interfaces;
+﻿namespace Functoso.Contracts;
 
 public interface IUserService
 {

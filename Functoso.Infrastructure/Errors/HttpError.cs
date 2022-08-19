@@ -1,4 +1,4 @@
-﻿namespace Functoso.Application.Errors;
+﻿namespace Functoso.Infrastructure.Errors;
 
 public record HttpError(string Message, int Code) : LanguageExt.Common.Expected(Message, Code)
 {

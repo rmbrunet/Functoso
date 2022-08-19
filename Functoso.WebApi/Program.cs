@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Functoso.Application.Interfaces;
+using Functoso.Contracts;
 using Functoso.Infrastructure;
 using MediatR;
 

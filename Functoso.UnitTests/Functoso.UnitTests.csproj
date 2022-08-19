@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Functoso.Application\Functoso.Application.csproj" />
     <ProjectReference Include="..\Functoso.Infrastructure\Functoso.Infrastructure.csproj" />
   </ItemGroup>
 
