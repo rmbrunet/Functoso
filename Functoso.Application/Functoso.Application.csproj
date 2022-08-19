@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Functoso.Contracts\Functoso.Contracts.csproj" />
-    <ProjectReference Include="..\Functoso.Domain\Functoso.Domain.csproj" />
   </ItemGroup>
 
 </Project>
