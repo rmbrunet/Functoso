@@ -1,25 +1,21 @@
-﻿using System.Net.Http.Json;
-using Functoso.Infrastructure.Errors;
-
-namespace Functoso.Infrastructure;
+﻿namespace Functoso.Infrastructure.Services;
 
 /// <summary>
 /// User Service implementation.
 /// </summary>
-public class UserService : IUserService
+public class UserService : ServiceBase, IUserService
 {
-    private readonly HttpClient _client;
 
-    public UserService(HttpClient client)
+    public UserService(HttpClient client) : base(client)
     {
-        _client = client;
+
     }
 
     /// <summary>
     /// GetUsers Method
     /// </summary>
     /// <returns>Collection of User objects</returns>
-    public Aff<IEnumerable<User>> Users => Get<IEnumerable<User>>(_client, new Uri("users", UriKind.Relative));
+    public Aff<IEnumerable<User>> Users => Get<IEnumerable<User>>(new Uri("users", UriKind.Relative));
 
     /// <summary>
     /// GetUser Method
@@ -27,25 +23,6 @@ public class UserService : IUserService
     /// <param name="id">User identifier</param>
     /// <returns>The usewr corresponding to the id or an Expected 404 Error</returns>
     public Aff<User> GetUser(int id)
-        => Get<User>(_client, new Uri($"users/{id}", UriKind.Relative));
+        => Get<User>(new Uri($"users/{id}", UriKind.Relative));
 
-    private static Aff<T> Get<T>(HttpClient client, Uri uri)
-        => from a in GetHttpResponse(client, uri)
-           from b in Get<T>(a)
-           select b;
-
-    private static Aff<T> Get<T>(HttpResponseMessage response)
-        => AffMaybe<T>(async () =>
-        {
-            T? t = await response.Content.ReadFromJsonAsync<T>();
-            return Optional(t).ToFin();
-        });
-
-    private static Aff<HttpResponseMessage> GetHttpResponse(HttpClient client, Uri uri)
-        => AffMaybe<HttpResponseMessage>(async () =>
-            await client.GetAsync(uri) switch
-            {
-                { IsSuccessStatusCode: true } m => m,
-                var m => new HttpError(m)
-            });
 }

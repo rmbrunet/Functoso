@@ -1,6 +1,5 @@
 ﻿using System.Net;
-using Functoso.UnitTests.Common;
-
+using static Functoso.UnitTests.Common.HttpClientMock;
 namespace Functoso.UnitTests.Infrastructure;
 
 public class UserServiceTests
@@ -12,12 +11,8 @@ public class UserServiceTests
     public async Task Service_ReturnExpectedError404_WhenUserNotFound()
     {
         // Arrange
-        using var handler = new MockingHandler(() => Task.FromResult(new HttpResponseMessage(HttpStatusCode.NotFound)));
 
-        HttpClient client = new(handler)
-        {
-            BaseAddress = new Uri("https://fakeurl")
-        };
+        HttpClient client = CreateHttpClient(HttpStatusCode.NotFound);
 
         IUserService sut = new UserService(client);
 

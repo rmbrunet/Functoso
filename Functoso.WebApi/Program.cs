@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using Functoso.Contracts;
-using Functoso.Infrastructure;
+using Functoso.Infrastructure.Services;
 using MediatR;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

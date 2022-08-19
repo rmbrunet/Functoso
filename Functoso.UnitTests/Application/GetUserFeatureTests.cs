@@ -17,7 +17,7 @@ public class GetUserFeatureTests
     {
         // Arrange
         var query = new GetUserFeature.Query(0);
-        var queryValidator = new Functoso.Application.Features.GetUserFeature.QueryValidator();
+        var queryValidator = new GetUserFeature.QueryValidator();
         var userServiceMock = new Mock<IUserService>();
 
         IMapper mapper = new MapperConfiguration(cfg =>
